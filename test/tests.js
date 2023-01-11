@@ -198,5 +198,35 @@ module.exports = function (intersection, t) {
 		st.end();
 	});
 
+	t.test('duplicate elements', function (st) {
+		var set = new $Set([1, 2]);
+
+		var setLike = {
+			size: Infinity,
+			has: function (x) {
+				// Remove and then re-add 1.
+				if (x === 2) {
+					set['delete'](1);
+					set.add(1);
+				}
+				return true;
+			},
+			keys: function () {
+				throw new EvalError('Unexpected call to |keys| method');
+			}
+		};
+
+		var result = intersection(set, setLike);
+		st.ok(result instanceof $Set, 'returns a Set');
+		setEqual(
+			st,
+			result,
+			new $Set([1, 2]),
+			'returns the intersection of the Set and the setLike'
+		);
+
+		st.end();
+	});
+
 	return t.comment('tests completed');
 };
