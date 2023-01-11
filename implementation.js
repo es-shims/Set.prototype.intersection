@@ -61,10 +61,13 @@ module.exports = function intersection(other) {
 
 	// if (thisSize <= otherRec['[[Size]]']) { // step 6
 	$setForEach(O, function (e) {
-		var inOther = ToBoolean(Call(otherRec['[[Has]]'], otherRec['[[Set]]'], [e])); // step 6.a.i.1
-		if (inOther) { // step 6.a.i.2
-			// $push(resultSetData, e); // step 6.a.i.2.a
-			$setAdd(result, e); // step 6.a.i.2.a
+		var inOther = ToBoolean(Call(otherRec['[[Has]]'], otherRec['[[Set]]'], [e])); // step 6.b.iii.1
+		if (inOther) { // step 6.b.iii.2
+			// var alreadyInResult = SetDataHas(resultSetData, e); // step 6.b.iii.2.b
+			// if (alreadyInResult) { // step 6.b.iii.2.c
+			// $push(resultSetData, e); // step 6.b.iii.c.i
+			$setAdd(result, e); // step 6.b.iii.c.i
+			// }
 		}
 	});
 
