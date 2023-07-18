@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.0](https://github.com/es-shims/Set.prototype.intersection/compare/v1.0.2...v1.1.0) - 2023-07-18
+
+### Commits
+
+- [patch] remove GetKeysIterator and its callable check [`9f1b932`](https://github.com/es-shims/Set.prototype.intersection/commit/9f1b9325d37f922af37490e018e620a2b5dd1ac9)
+- [Deps] update `es-abstract`, `get-intrinsic` [`b73c04e`](https://github.com/es-shims/Set.prototype.intersection/commit/b73c04ed265fa1c25539b98cf3be6c4a0cb382c4)
+- [Tests] remove unused shimmed tests [`1114fb6`](https://github.com/es-shims/Set.prototype.intersection/commit/1114fb66fe826291efe11b7329273f90ef101361)
+- [patch] throw on negative set sizes [`b4e7b5f`](https://github.com/es-shims/Set.prototype.intersection/commit/b4e7b5f5304e4b61588fdb8faa0d60bf1dfd8e06)
+- [Dev Deps] update `@es-shims/api`, `@ljharb/eslint-config`, `aud`, `es6-shim`, `tape` [`681bb9f`](https://github.com/es-shims/Set.prototype.intersection/commit/681bb9fc33547046bbaf06f60482718be6b7a685)
+- [Deps] update `define-properties`, `es-abstract`, `get-intrinsic` [`8361911`](https://github.com/es-shims/Set.prototype.intersection/commit/83619113246b312108e2c1bec52474823b54a767)
+- [Dev Deps] update `@es-shims/api`, `tape` [`b25ffae`](https://github.com/es-shims/Set.prototype.intersection/commit/b25ffaec177f277b280a21a71884705624881d29)
+
 ## [v1.0.2](https://github.com/es-shims/Set.prototype.intersection/compare/v1.0.1...v1.0.2) - 2023-01-14
 
 ### Commits
