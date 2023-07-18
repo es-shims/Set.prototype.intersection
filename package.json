@@ -62,9 +62,9 @@
 	"dependencies": {
 		"call-bind": "^1.0.2",
 		"define-properties": "^1.2.0",
-		"es-abstract": "^1.21.2",
+		"es-abstract": "^1.22.1",
 		"es-set": "^1.1.0",
-		"get-intrinsic": "^1.2.0",
+		"get-intrinsic": "^1.2.1",
 		"is-set": "^2.0.2",
 		"stop-iteration-iterator": "^1.0.0"
 	},
