@@ -9,7 +9,7 @@
 		"new-cap": [2, {
 			"capIsNewExceptions": [
 				"GetIntrinsic",
-				"GetKeysIterator",
+				"GetIteratorFromMethod",
 				"GetSetRecord",
 				"IteratorStep",
 				"IteratorValue",
