@@ -4,6 +4,7 @@ var $Set = require('es-set/polyfill')();
 var forEach = require('for-each');
 var v = require('es-value-fixtures');
 var debug = require('object-inspect');
+var $Map = require('es-map/polyfill')();
 
 var setEqual = function compareSetLikes(t, actual, expected, msg) {
 	t.test('setlikes: ' + msg, function (st) {
@@ -29,7 +30,7 @@ var setEqual = function compareSetLikes(t, actual, expected, msg) {
 
 module.exports = function (intersection, t) {
 	t.test('throws on non-set receivers', function (st) {
-		forEach(v.primitives.concat(v.objects), function (nonSet) {
+		forEach(v.primitives.concat(v.objects, []), function (nonSet) {
 			st['throws'](
 				function () { intersection(nonSet, {}); },
 				TypeError,
@@ -227,6 +228,273 @@ module.exports = function (intersection, t) {
 			result,
 			new $Set([1, 2]),
 			'returns the intersection of the Set and the setLike'
+		);
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/add-not-called', function (st) {
+		var s1 = new $Set([1, 2]);
+		var s2 = new $Set([2, 3]);
+		var expected = new $Set([2]);
+
+		var getCalls = st.capture($Set.prototype, 'add');
+
+		var combined = intersection(s1, s2);
+
+		st.deepEqual(combined, expected);
+		st.ok(combined instanceof $Set, 'returns a Set');
+		st.deepEqual(getCalls(), [], 'add is never called');
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/allows-set-like-object', function (st) {
+		var s1 = new $Set([1, 2]);
+		var s2 = {
+			size: 2,
+			has: function (x) {
+				if (x === 1) { return false; }
+				if (x === 2) { return true; }
+				throw new EvalError("Set.prototype.intersection should only call its argument's has method with contents of this");
+			},
+			keys: function () {
+				throw new EvalError("Set.prototype.intersection should not call its argument's keys iterator when this.size ≤ arg.size");
+			}
+		};
+		var expected = new $Set([2]);
+		var combined = intersection(s1, s2);
+
+		st.deepEqual(combined, expected);
+		st.ok(combined instanceof $Set, 'returns a Set');
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/combines-Map', function (st) {
+		var s1 = new $Set([1, 2]);
+		var m1 = new $Map([
+			[2, 'two'],
+			[3, 'three']
+		]);
+		var expected = new $Set([2]);
+		var combined = intersection(s1, m1);
+
+		st.deepEqual(combined, expected);
+		st.ok(combined instanceof $Set, 'returns a Set');
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/combines-empty-sets', function (st) {
+		var s1 = new $Set([]);
+		var s2 = new $Set([1, 2]);
+		var expected = new $Set([]);
+		var combined = intersection(s1, s2);
+
+		st.deepEqual(combined, expected);
+		st.ok(combined instanceof $Set, 'returns a Set');
+
+		var s3 = new $Set([1, 2]);
+		var s4 = new $Set([]);
+		expected = new $Set([]);
+		combined = intersection(s3, s4);
+
+		st.deepEqual(combined, expected);
+		st.ok(combined instanceof $Set, 'returns a Set');
+
+		var s5 = new $Set([]);
+		var s6 = new $Set([]);
+		expected = new $Set([]);
+		combined = intersection(s5, s6);
+
+		st.deepEqual(combined, expected);
+		st.ok(combined instanceof $Set, 'returns a Set');
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/combines-itself', function (st) {
+		var s1 = new $Set([1, 2]);
+		var expected = new $Set([1, 2]);
+		var combined = intersection(s1, s1);
+
+		st.deepEqual(combined, expected);
+		st.ok(combined instanceof $Set, 'returns a Set');
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/combines-same-sets', function (st) {
+		var s1 = new $Set([1, 2]);
+		var s2 = new $Set([1, 2]);
+		var expected = new $Set([1, 2]);
+		var combined = intersection(s1, s2);
+
+		st.deepEqual(combined, expected);
+		st.ok(combined instanceof $Set, 'returns a Set');
+
+		st.notEqual(combined, s1, 'The returned object is a new object');
+		st.notEqual(combined, s2, 'The returned object is a new object');
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/has-is-callable', function (st) {
+		var s1 = new $Set([1, 2]);
+		var s2 = {
+			size: 2,
+			has: undefined,
+			keys: function () {
+				return [2, 3];
+			}
+		};
+		st['throws'](
+			function () { intersection(s1, s2); },
+			TypeError,
+			'GetSetRecord throws an error when has is undefined'
+		);
+
+		s2.has = {};
+		st['throws'](
+			function () { intersection(s1, s2); },
+			TypeError,
+			'GetSetRecord throws an error when has is not callable'
+		);
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/keys-is-callable', function (st) {
+		var s1 = new $Set([1, 2]);
+		var s2 = {
+			size: 2,
+			has: function () {},
+			keys: undefined
+		};
+		st['throws'](
+			function () { intersection(s1, s2); },
+			TypeError,
+			'GetSetRecord throws an error when keys is undefined'
+		);
+
+		s2.keys = {};
+		st['throws'](
+			function () { intersection(s1, s2); },
+			TypeError,
+			'GetSetRecord throws an error when keys is not callable'
+		);
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/result-order', function (st) {
+		var s1 = new $Set([1, 3, 5]);
+		var s2 = new $Set([3, 2, 1]);
+
+		st.deepEqual(intersection(s1, s2), new $Set([1, 3]));
+
+		var s3 = new $Set([3, 2, 1]);
+		var s4 = new $Set([1, 3, 5]);
+
+		st.deepEqual(intersection(s3, s4), new $Set([3, 1]));
+
+		var s5 = new $Set([1, 3, 5]);
+		var s6 = new $Set([3, 2, 1, 0]);
+
+		st.deepEqual(intersection(s5, s6), new $Set([1, 3]));
+
+		var s7 = new $Set([3, 2, 1]);
+		var s8 = new $Set([1, 3, 5, 7]);
+
+		st.deepEqual(intersection(s7, s8), new $Set([3, 1]));
+
+		// when this.size > other.size, results are ordered as in other
+		var s9 = new $Set([3, 2, 1, 0]);
+		var s10 = new $Set([1, 3, 5]);
+
+		st.deepEqual(intersection(s9, s10), new $Set([1, 3]));
+
+		var s11 = new $Set([1, 3, 5, 7]);
+		var s12 = new $Set([3, 2, 1]);
+
+		st.deepEqual(intersection(s11, s12), new $Set([3, 1]));
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/set-like-array', function (st) {
+		var s1 = new $Set([1, 2]);
+		var s2 = [5, 6];
+		s2.size = 3;
+		s2.has = function (x) {
+			if (x === 1) { return false; }
+			if (x === 2) { return true; }
+			throw new EvalError("Set.prototype.intersection should only call its argument's has method with contents of this");
+		};
+		s2.keys = function () {
+			throw new EvalError("Set.prototype.intersection should not call its argument's keys iterator when this.size ≤ arg.size");
+		};
+
+		var expected = new $Set([2]);
+		var combined = intersection(s1, s2);
+
+		st.deepEqual(combined, expected);
+		st.ok(combined instanceof $Set, 'returns a Set');
+
+		st.end();
+	});
+
+	t.test('test262: test/built-ins/Set/prototype/intersection/size-is-a-number', function (st) {
+		var s1 = new $Set([1, 2]);
+		var s2 = {
+			size: undefined,
+			has: function () {},
+			keys: function () {
+				return [2, 3];
+			}
+		};
+		st['throws'](
+			function () { intersection(s1, s2); },
+			TypeError,
+			'GetSetRecord throws an error when size is undefined'
+		);
+
+		s2.size = NaN;
+		st['throws'](
+			function () { intersection(s1, s2); },
+			TypeError,
+			'GetSetRecord throws an error when size is NaN'
+		);
+
+		var coercionCalls = 0;
+		s2.size = {
+			valueOf: function () {
+				coercionCalls += 1;
+				return NaN;
+			}
+		};
+		st['throws'](
+			function () { intersection(s1, s2); },
+			TypeError,
+			'GetSetRecord throws an error when size coerces to NaN'
+		);
+		st.equal(coercionCalls, 1, 'GetSetRecord coerces size');
+
+		if (v.bigints.length > 0) {
+			s2.size = BigInt(0);
+			st['throws'](
+				function () { intersection(s1, s2); },
+				TypeError,
+				'GetSetRecord throws an error when size is a BigInt'
+			);
+		}
+
+		s2.size = 'string';
+		st['throws'](
+			function () { intersection(s1, s2); },
+			TypeError,
+			'GetSetRecord throws an error when size is a non-numeric string'
 		);
 
 		st.end();
