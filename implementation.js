@@ -49,6 +49,9 @@ module.exports = function intersection(other) {
 	// if (thisSize <= otherRec['[[Size]]']) { // step 6
 	$setForEach(O, function (e) {
 		var inOther = ToBoolean(Call(otherRec['[[Has]]'], otherRec['[[Set]]'], [e])); // step 6.b.iii.1
+		if (!inOther && e === 0) {
+			inOther = ToBoolean(Call(otherRec['[[Has]]'], otherRec['[[Set]]'], [-e]));
+		}
 		if (inOther) { // step 6.b.iii.2
 			// var alreadyInResult = SetDataHas(resultSetData, e); // step 6.b.iii.2.b
 			// if (alreadyInResult) { // step 6.b.iii.2.c

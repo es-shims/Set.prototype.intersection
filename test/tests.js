@@ -340,6 +340,42 @@ module.exports = function (intersection, t) {
 		st.end();
 	});
 
+	t.test('test262: test/built-ins/Set/prototype/intersection/converts-negative-zero', function (st) {
+		var setlikeWithMinusZero = {
+			size: 1,
+			has: function (x) {
+				// impossible to avoid this call since we do not have internal set data access
+				// throw new EvalError('Set.prototype.intersection should not invoke .has on its argument when this.size > arg.size');
+				return debug(x) === '-0';
+			},
+			keys: function () {
+				var done = false;
+				return {
+					next: function () {
+						try {
+							return {
+								value: done ? void undefined : -0,
+								done: done
+							};
+						} finally {
+							done = true;
+						}
+					}
+				};
+
+			}
+		};
+
+		var s1 = new $Set([0, 1, 2]);
+		var expected = new $Set([+0]);
+		var combined = intersection(s1, setlikeWithMinusZero);
+
+		st.deepEqual(combined, expected);
+		st.ok(combined instanceof $Set, 'returns a Set');
+
+		st.end();
+	});
+
 	t.test('test262: test/built-ins/Set/prototype/intersection/has-is-callable', function (st) {
 		var s1 = new $Set([1, 2]);
 		var s2 = {
