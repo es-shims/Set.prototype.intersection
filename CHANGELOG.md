@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.1](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.0...v1.1.1) - 2023-12-17
+
+### Commits
+
+- [Tests] increase coverage [`0b2a5ae`](https://github.com/es-shims/Set.prototype.intersection/commit/0b2a5ae1f061b732dc125894d6824b4f13d921e1)
+- [Fix] properly handle negative zero [`d381180`](https://github.com/es-shims/Set.prototype.intersection/commit/d381180c1efda6071dcaf24639fe58daf30088b1)
+- [Deps] update `call-bind`, `define-properties`, `es-abstract`, `get-intrinsic`, `stop-iteration-iterator` [`1a24a62`](https://github.com/es-shims/Set.prototype.intersection/commit/1a24a62bfb714480f294c3ef226bed45cf438624)
+- [Dev Deps] update `aud`, `npmignore`, `object-inspect`, `tape` [`6bf9ab5`](https://github.com/es-shims/Set.prototype.intersection/commit/6bf9ab59f196640bac490f45a790d5b0be066228)
+- [Tests] oops, skip native tests [`95bd850`](https://github.com/es-shims/Set.prototype.intersection/commit/95bd850c33ee743c39398b5c1e48f7a1974cab07)
+- [Deps] update `es-set` [`a166dfc`](https://github.com/es-shims/Set.prototype.intersection/commit/a166dfccfeac07e2427e1834608184dd6b5f4bdb)
+- [Dev Deps] update `tape` [`5b3b8ae`](https://github.com/es-shims/Set.prototype.intersection/commit/5b3b8ae3190ab3297043d955d93941dd4a2de060)
+
 ## [v1.1.0](https://github.com/es-shims/Set.prototype.intersection/compare/v1.0.2...v1.1.0) - 2023-07-18
 
 ### Commits
