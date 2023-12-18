@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.2](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.1...v1.1.2) - 2023-12-18
+
+### Commits
+
+- [Fix] properly implement algorithm [`2d27685`](https://github.com/es-shims/Set.prototype.intersection/commit/2d276854d284bdbbf3b4917f70a02479b414ba35)
+
 ## [v1.1.1](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.0...v1.1.1) - 2023-12-17
 
 ### Commits
