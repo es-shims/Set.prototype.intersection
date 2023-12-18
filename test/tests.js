@@ -343,10 +343,9 @@ module.exports = function (intersection, t) {
 	t.test('test262: test/built-ins/Set/prototype/intersection/converts-negative-zero', function (st) {
 		var setlikeWithMinusZero = {
 			size: 1,
-			has: function (x) {
+			has: function () {
 				// impossible to avoid this call since we do not have internal set data access
-				// throw new EvalError('Set.prototype.intersection should not invoke .has on its argument when this.size > arg.size');
-				return debug(x) === '-0';
+				throw new EvalError('Set.prototype.intersection should not invoke .has on its argument when this.size > arg.size');
 			},
 			keys: function () {
 				var done = false;
