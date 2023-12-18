@@ -5,6 +5,7 @@ var forEach = require('for-each');
 var v = require('es-value-fixtures');
 var debug = require('object-inspect');
 var $Map = require('es-map/polyfill')();
+var getIterator = require('es-get-iterator');
 
 var setEqual = function compareSetLikes(t, actual, expected, msg) {
 	t.test('setlikes: ' + msg, function (st) {
@@ -344,7 +345,6 @@ module.exports = function (intersection, t) {
 		var setlikeWithMinusZero = {
 			size: 1,
 			has: function () {
-				// impossible to avoid this call since we do not have internal set data access
 				throw new EvalError('Set.prototype.intersection should not invoke .has on its argument when this.size > arg.size');
 			},
 			keys: function () {
@@ -381,7 +381,7 @@ module.exports = function (intersection, t) {
 			size: 2,
 			has: undefined,
 			keys: function () {
-				return [2, 3];
+				return getIterator([2, 3]);
 			}
 		};
 		st['throws'](
@@ -486,7 +486,7 @@ module.exports = function (intersection, t) {
 			size: undefined,
 			has: function () {},
 			keys: function () {
-				return [2, 3];
+				return getIterator([2, 3]);
 			}
 		};
 		st['throws'](
