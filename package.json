@@ -23,7 +23,7 @@
 		"prepublishOnly": "safe-publish-latest",
 		"prepublish": "not-in-publish || npm run prepublishOnly",
 		"pretest": "npm run --silent lint",
-		"tests-only": "nyc tape 'test/**/[!native]*.js'",
+		"tests-only": "nyc tape test/index.js 'test/**/[!native]*.js'",
 		"test:native": "nyc node test/native",
 		"prelint": "evalmd README.md",
 		"lint": "eslint --ext=js,mjs .",
