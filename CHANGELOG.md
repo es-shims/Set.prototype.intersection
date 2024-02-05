@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.3](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.2...v1.1.3) - 2024-02-04
+
+### Commits
+
+- [Refactor] use `es-errors` where possible, so things that only need those do not need `get-intrinsic` [`91d23b2`](https://github.com/es-shims/Set.prototype.intersection/commit/91d23b2797233204058de003778250f5e429efdd)
+- [Tests] ensure test mocks return iterators [`c6af839`](https://github.com/es-shims/Set.prototype.intersection/commit/c6af839a2f1d6fa12e97bb04444533481586ed68)
+- [Tests] for some reason the glob does not include index.js [`d75a861`](https://github.com/es-shims/Set.prototype.intersection/commit/d75a86156b0128ad26596ec374c99525ada45bd1)
+- [Dev Deps] update `tape` [`9ed3594`](https://github.com/es-shims/Set.prototype.intersection/commit/9ed35949d79f79b52b078323c3ef6a04f25b1f70)
+
 ## [v1.1.2](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.1...v1.1.2) - 2023-12-18
 
 ### Commits
