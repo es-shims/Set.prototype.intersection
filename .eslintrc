@@ -8,7 +8,6 @@
 		"multiline-comment-style": 0,
 		"new-cap": [2, {
 			"capIsNewExceptions": [
-				"GetIntrinsic",
 				"GetIteratorFromMethod",
 				"GetSetRecord",
 				"IteratorStep",
