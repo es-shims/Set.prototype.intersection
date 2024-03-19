@@ -6,14 +6,14 @@ var $TypeError = require('es-errors/type');
 
 var $Set = require('es-set/polyfill')();
 
-var Call = require('es-abstract/2023/Call');
-var GetIteratorFromMethod = require('es-abstract/2023/GetIteratorFromMethod');
+var Call = require('es-abstract/2024/Call');
+var GetIteratorFromMethod = require('es-abstract/2024/GetIteratorFromMethod');
 var GetSetRecord = require('./aos/GetSetRecord');
-var IteratorStep = require('es-abstract/2023/IteratorStep');
-var IteratorValue = require('es-abstract/2023/IteratorValue');
+var IteratorStep = require('es-abstract/2024/IteratorStep');
+var IteratorValue = require('es-abstract/2024/IteratorValue');
 var SetDataHas = require('./aos/SetDataHas');
 var SetDataSize = require('./aos/SetDataSize');
-var ToBoolean = require('es-abstract/2023/ToBoolean');
+var ToBoolean = require('es-abstract/2024/ToBoolean');
 
 var forEach = require('es-abstract/helpers/forEach');
 
