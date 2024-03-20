@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.4](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.3...v1.1.4) - 2024-03-19
+
+### Commits
+
+- [Refactor] add `SetDataSize` [`714b7a1`](https://github.com/es-shims/Set.prototype.intersection/commit/714b7a1b25b3f403ec1415ba4b3eb1ee5ae6ea64)
+- [meta] remove useless ESM [`766bf7a`](https://github.com/es-shims/Set.prototype.intersection/commit/766bf7a7f0a3406f95b2338dcc69d4e584889bad)
+- [Deps] update `call-bind`, `es-abstract`, `es-errors`, `is-set` [`72b2a56`](https://github.com/es-shims/Set.prototype.intersection/commit/72b2a567d899e20239889de0a4876e6acbb6e575)
+- [actions] remove redundant finisher [`ba66d24`](https://github.com/es-shims/Set.prototype.intersection/commit/ba66d249c62aa8797ec28e3e69d85a067f787bce)
+- [Dev Deps] update `tape` [`4bc40ee`](https://github.com/es-shims/Set.prototype.intersection/commit/4bc40eebcf57ae9342f0095d7e86b397a52ce7d0)
+
 ## [v1.1.3](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.2...v1.1.3) - 2024-02-04
 
 ### Commits
