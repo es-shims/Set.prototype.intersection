@@ -9,10 +9,8 @@ var $Set = require('es-set/polyfill')();
 var Call = require('es-abstract/2024/Call');
 var GetIteratorFromMethod = require('es-abstract/2024/GetIteratorFromMethod');
 var GetSetRecord = require('./aos/GetSetRecord');
-var IteratorStep = require('es-abstract/2024/IteratorStep');
-var IteratorValue = require('es-abstract/2024/IteratorValue');
+var IteratorStepValue = require('es-abstract/2024/IteratorStepValue');
 var SetDataHas = require('./aos/SetDataHas');
-var SetDataSize = require('./aos/SetDataSize');
 var ToBoolean = require('es-abstract/2024/ToBoolean');
 
 var forEach = require('es-abstract/helpers/forEach');
@@ -24,6 +22,7 @@ var isSet = require('is-set');
 var tools = require('es-set/tools');
 var $setForEach = tools.forEach;
 var $setAdd = tools.add;
+var $setSize = tools.size;
 
 var $push = callBound('Array.prototype.push');
 var $setHas = callBind($Set.prototype.has);
@@ -40,7 +39,7 @@ module.exports = function intersection(other) {
 
 	var resultSetData = []; // step 4
 
-	var thisSize = SetDataSize(O); // step 5.a
+	var thisSize = $setSize(O); // SetDataSize(O.[[SetData]]); // step 5.a
 	if (thisSize <= otherRec['[[Size]]']) { // step 5
 		var index = 0; // step 5.b
 		$setForEach(O, function (e) {
@@ -58,19 +57,17 @@ module.exports = function intersection(other) {
 		});
 	} else { // step 6
 		var keysIter = GetIteratorFromMethod(otherRec['[[Set]]'], otherRec['[[Keys]]']); // step 6.a
-		var next = true; // step 6.b
-		while (next) { // step 6.c
-			next = IteratorStep(keysIter); // step 6.c.i
-			if (next) { // step 6.c.ii
-				var nextValue = IteratorValue(next); // step 6.c.ii.1
-
-				if (nextValue === 0) { // step 6.c.ii.2
-					nextValue = +0;
+		var next; // step 6.b
+		while (!keysIter['[[Done]]']) { // step 6.c
+			next = IteratorStepValue(keysIter); // step 6.c.i
+			if (!keysIter['[[Done]]']) { // step 6.c.ii
+				if (next === 0) { // step 6.c.ii.1
+					next = +0;
 				}
-				var alreadyInResult = SetDataHas(resultSetData, nextValue); // step 6.c.ii.4
-				var inThis = $setHas(O, nextValue); // step 6.c.ii.5
-				if (!alreadyInResult && inThis) { // step 6.c.ii.6
-					$push(resultSetData, nextValue); // step 6.c.ii.6.a
+				var alreadyInResult = SetDataHas(resultSetData, next); // step 6.c.ii.3
+				var inThis = $setHas(O, next); // step 6.c.ii.4
+				if (!alreadyInResult && inThis) { // step 6.c.ii.5
+					$push(resultSetData, next); // step 6.c.ii.5.a
 				}
 			}
 		}

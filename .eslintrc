@@ -10,8 +10,7 @@
 			"capIsNewExceptions": [
 				"GetIteratorFromMethod",
 				"GetSetRecord",
-				"IteratorStep",
-				"IteratorValue",
+				"IteratorStepValue",
 				"RequireObjectCoercible",
 				"SetDataHas",
 				"SetDataSize",
