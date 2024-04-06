@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.5](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.4...v1.1.5) - 2024-04-06
+
+### Commits
+
+- [Refactor] update spec from https://github.com/tc39/ecma262/pull/3306 [`a1454f4`](https://github.com/es-shims/Set.prototype.intersection/commit/a1454f46d8e5a0a48878cfa25b8ec48712fb32d0)
+- [Deps] update `es-abstract` [`8be383a`](https://github.com/es-shims/Set.prototype.intersection/commit/8be383a1cb3ce9e2442a501cc3f4d6cf8fa68017)
+- [Dev Deps] update `@es-shims/api` [`76cd036`](https://github.com/es-shims/Set.prototype.intersection/commit/76cd03610b0692e665394173faad03733785bda8)
+
 ## [v1.1.4](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.3...v1.1.4) - 2024-03-19
 
 ### Commits
