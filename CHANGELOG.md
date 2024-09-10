@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.7](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.6...v1.1.7) - 2024-09-10
+
+### Commits
+
+- [Fix] polyfill: also detect Chrome/v8 bug with setlike size of 2**31 [`6344598`](https://github.com/es-shims/Set.prototype.intersection/commit/6344598b478752ba0359eaa61c454fcf11fc9b43)
+
 ## [v1.1.6](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.5...v1.1.6) - 2024-09-09
 
 ### Commits
