@@ -28,6 +28,9 @@ var shimmedResult = set1.intersection(set2);
 assert.deepEqual(shimmedResult, new Set([2]));
 ```
 
+## Compatibility
+node v22 and equivalent versions of Chrome have Set intersection, but has a bug with set-like arguments with non-SMI integer sizes.
+
 ## Tests
 Simply clone the repo, `npm install`, and run `npm test`
 
