@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.6](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.5...v1.1.6) - 2024-09-09
+
+### Commits
+
+- [Fix] `node` `v22` and equivalent Chrome versions have a bug [`2024f8c`](https://github.com/es-shims/Set.prototype.intersection/commit/2024f8c63ce84973353e78e192de01c305e9234a)
+- [Dev Deps] update `@es-shims/api`, `@ljharb/eslint-config`, `object-inspect`, `tape` [`d50a71b`](https://github.com/es-shims/Set.prototype.intersection/commit/d50a71b1c1dd9881d2ce6fed56ba1834b9880ead)
+- [Refactor] change internal slot name [`f3eea84`](https://github.com/es-shims/Set.prototype.intersection/commit/f3eea843706163313c63351e7b148a738ec08af4)
+- [Tests] replace `aud` with `npm audit` [`fba1b9c`](https://github.com/es-shims/Set.prototype.intersection/commit/fba1b9c6646607e5278fda134fe9443136e4a2d9)
+- [Dev Deps] add missing peer dep [`047c8e0`](https://github.com/es-shims/Set.prototype.intersection/commit/047c8e0896b214f25a6c7037657435f95cd340ff)
+
 ## [v1.1.5](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.4...v1.1.5) - 2024-04-06
 
 ### Commits
