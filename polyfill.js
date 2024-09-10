@@ -17,6 +17,8 @@ module.exports = function getPolyfill() {
 		};
 
 		new Set([1]).intersection(setLike);
+		setLike.size = 2147483648; // 2 ** 31
+		new Set([1]).intersection(setLike);
 
 		if (!called) {
 			return Set.prototype.intersection;

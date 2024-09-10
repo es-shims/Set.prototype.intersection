@@ -222,13 +222,36 @@ module.exports = function (intersection, t) {
 			}
 		};
 
-		var result = intersection(set, setLike);
+		var result;
+		st.doesNotThrow(
+			function () { result = intersection(set, setLike); },
+			'`keys` function is not invoked'
+		);
 		st.ok(result instanceof $Set, 'returns a Set');
-		setEqual(
-			st,
-			result,
-			new $Set([1, 2]),
-			'returns the intersection of the Set and the setLike'
+		if (result) {
+			setEqual(
+				st,
+				result,
+				new $Set([1, 2]),
+				'returns the intersection of the Set and the setLike'
+			);
+		}
+
+		st.end();
+	});
+
+	t.test('works with a set-like of certain sizes', function (st) {
+		var setLike = {
+			size: Math.pow(2, 31),
+			has: function () {},
+			keys: function () {
+				throw new Error('Unexpected call to |keys| method');
+			}
+		};
+
+		st.doesNotThrow(
+			function () { intersection(new $Set([1]), setLike); },
+			'2**31: `keys` function is not invoked'
 		);
 
 		st.end();
