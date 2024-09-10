@@ -45,7 +45,7 @@ module.exports = function intersection(other) {
 		$setForEach(O, function (e) {
 			if (index < thisSize) { // step 5.c
 				index += 1; // step 5.c.ii
-				var inOther = ToBoolean(Call(otherRec['[[Has]]'], otherRec['[[Set]]'], [e])); // step 5.c.iii.1
+				var inOther = ToBoolean(Call(otherRec['[[Has]]'], otherRec['[[SetObject]]'], [e])); // step 5.c.iii.1
 				if (inOther) { // step 6.c.iii.2
 					var alreadyInResult = SetDataHas(resultSetData, e); // step 5.c.iii.2.b
 					if (!alreadyInResult) { // step 5.c.iii.2.c
@@ -56,7 +56,7 @@ module.exports = function intersection(other) {
 			}
 		});
 	} else { // step 6
-		var keysIter = GetIteratorFromMethod(otherRec['[[Set]]'], otherRec['[[Keys]]']); // step 6.a
+		var keysIter = GetIteratorFromMethod(otherRec['[[SetObject]]'], otherRec['[[Keys]]']); // step 6.a
 		var next; // step 6.b
 		while (!keysIter['[[Done]]']) { // step 6.c
 			next = IteratorStepValue(keysIter); // step 6.c.i
