@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.8](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.7...v1.1.8) - 2025-12-30
+
+### Commits
+
+- [Deps] update `call-bind`, `es-abstract`, `es-set`, `stop-iteration-iterator` [`b16a8c2`](https://github.com/es-shims/Set.prototype.intersection/commit/b16a8c2fae211126f2cef2ce6b786b3592314e58)
+- [Dev Deps] update `@ljharb/eslint-config`, `auto-changelog`, `es-map`, `es-value-fixtures`, `for-each`, `gopd`, `has-strict-mode`, `object-inspect`, `tape` [`67b0a3b`](https://github.com/es-shims/Set.prototype.intersection/commit/67b0a3bfe91bc8e776ace80212f20b2e3f836111)
+- [Deps] update `es-set` [`6b47793`](https://github.com/es-shims/Set.prototype.intersection/commit/6b47793c931c102fb44bf95269ff37ddccf9fde1)
+
 ## [v1.1.7](https://github.com/es-shims/Set.prototype.intersection/compare/v1.1.6...v1.1.7) - 2024-09-10
 
 ### Commits
