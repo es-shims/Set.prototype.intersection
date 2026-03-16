@@ -240,6 +240,40 @@ module.exports = function (intersection, t) {
 		st.end();
 	});
 
+	t.test('set growing during iteration stops processing new elements', function (st) {
+		var set = new $Set([1, 2]);
+
+		var setLike = {
+			size: Infinity,
+			has: function (x) {
+				if (x === 1) {
+					set.add(3); // grow the set during iteration
+				}
+				return false; // nothing found in other
+			},
+			keys: function () {
+				throw new EvalError('Unexpected call to |keys| method');
+			}
+		};
+
+		var result;
+		st.doesNotThrow(
+			function () { result = intersection(set, setLike); },
+			'does not throw when set grows during iteration'
+		);
+		st.ok(result instanceof $Set, 'returns a Set');
+		if (result) {
+			setEqual(
+				st,
+				result,
+				new $Set([]),
+				'returns empty set when has always returns false'
+			);
+		}
+
+		st.end();
+	});
+
 	t.test('works with a set-like of certain sizes', function (st) {
 		var setLike = {
 			size: Math.pow(2, 31),
